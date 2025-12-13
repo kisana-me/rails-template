@@ -1,0 +1,21 @@
+<% provide(:title, 'アカウント一覧') %>
+
+<h1>アカウント一覧</h1>
+<% @accounts.each do |account| %>
+  <%= link_to account_path(account.name_id) do %>
+    <div class="account">
+      <div class="account-icon">
+        <%= image_tag(account.icon_url, alt: "#{account.name}のアイコン") %>
+      </div>
+      <div class="account-name">
+        <%= account.name %>
+      </div>
+      <div class="account-name_id">
+        @<%= account.name_id %>
+      </div>
+      <div class="account-description">
+        <%= account.description %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

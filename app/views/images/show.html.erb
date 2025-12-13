@@ -1,0 +1,9 @@
+<% provide(:title, '画像') %>
+<% provide(:robots, 'false') %>
+<% provide(:layout_style, '') %>
+<% provide(:ga4, 'false') %>
+
+<h1>画像</h1>
+<%= image_tag(@image.image_url, alt: "#{@image.name}") %>
+<hr />
+<%= render 'images/image', image: @image %>

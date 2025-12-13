@@ -1,0 +1,18 @@
+<% provide(:title, "#{@account.name} さん") %>
+
+<h1>アカウント</h1>
+
+<div class="account">
+  <div class="account-icon">
+    <%= image_tag(@account.icon_url, alt: "#{@account.name}のアイコン") %>
+  </div>
+  <div class="account-name">
+    <%= @account.name %>
+  </div>
+  <div class="account-name_id">
+    @<%= @account.name_id %>
+  </div>
+  <div class="account-description">
+    <%= @account.description %>
+  </div>
+</div>

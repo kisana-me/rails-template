@@ -24,6 +24,41 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <header>
+      <div>
+        <%= link_to("App", root_path) %>
+      </div>
+      <div>
+        <% if @current_account %>
+          名前: <%= link_to(@current_account.name, account_path(@current_account.name_id)) %>
+        <% else %>
+          <%= link_to('開始', sessions_start_path) %>
+        <% end %>
+      </div>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <div id="flash">
+      <%= render "shared/flash" %>
+    </div>
+
+    <footer>
+      <div>
+        <%= link_to("App", root_path) %>
+      </div>
+      <div>
+        <%= link_to("利用規約", terms_of_service_path) %>
+        <%= link_to("プライバシーポリシー", privacy_policy_path) %>
+        <%= link_to("お問い合わせ", contact_path) %>
+        <%= link_to("サイトマップ", sitemap_path) %>
+      </div>
+      <div>
+        <small>© App</small>
+      </div>
+    </footer>
   </body>
 </html>
