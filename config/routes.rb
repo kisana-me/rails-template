@@ -1,14 +1,40 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'pages#index'
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  # Pages
+  get 'terms-of-service' => 'pages#terms_of_service'
+  get 'privacy-policy' => 'pages#privacy_policy'
+  get 'contact' => 'pages#contact'
+  get 'sitemap' => 'pages#sitemap'
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  # Accounts
+  resources :accounts, param: :aid
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Images
+  resources :images, param: :aid
+
+  # Sessions
+  get 'sessions/start'
+  delete 'signout' => 'sessions#signout'
+  resources :sessions, except: [:new, :create], param: :aid
+
+  # Signup
+  get 'signup' => 'signup#new'
+  post 'signup' => 'signup#create'
+
+  # OAuth
+  post 'oauth/start' => 'oauth#start'
+  get 'oauth/callback' => 'oauth#callback'
+  post 'oauth/fetch' => 'oauth#fetch'
+
+  # Settings
+  get 'settings' => 'settings#index'
+  post 'settings' => 'settings#update'
+  get 'settings/account' => 'settings#account'
+
+  # Others
+  get 'up' => 'rails/health#show', as: :rails_health_check
+
+  # Errors
+  match '*path', to: 'application#routing_error', via: :all
 end
