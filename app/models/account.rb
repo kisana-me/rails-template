@@ -37,11 +37,11 @@ class Account < ApplicationRecord
   # === #
 
   def icon_file=(file)
-    if file.present? && file.content_type.start_with?('image/')
+    if file.present? && file.content_type.start_with?("image/")
       new_image = Image.new
       new_image.account = self
       new_image.image = file
-      new_image.variant_type = 'icon'
+      new_image.variant_type = "icon"
       self.icon = new_image
     end
   end

@@ -46,6 +46,6 @@ class SessionsController < ApplicationController
   end
 
   def session_params
-    params.expect(session: [:name])
+    params.expect(session: [ :name ])
   end
 end

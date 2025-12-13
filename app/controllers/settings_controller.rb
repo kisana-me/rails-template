@@ -35,7 +35,7 @@ class SettingsController < ApplicationController
         :name_id,
         :description,
         :birthdate,
-        :icon_file,
+        :icon_file
       ]
     )
   end
