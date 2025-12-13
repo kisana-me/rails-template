@@ -36,6 +36,16 @@ class Account < ApplicationRecord
 
   # === #
 
+  def icon_file=(file)
+    if file.present? && file.content_type.start_with?('image/')
+      new_image = Image.new
+      new_image.account = self
+      new_image.image = file
+      new_image.variant_type = 'icon'
+      self.icon = new_image
+    end
+  end
+
   def icon_url
     icon&.image_url(variant_type: "icon") || "/img-1.png"
   end
