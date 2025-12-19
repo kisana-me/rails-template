@@ -2,11 +2,12 @@ class AccountsController < ApplicationController
   before_action :set_account, only: %i[show]
 
   def index
-    @accounts = Account
+    accounts = Account
       .is_normal
       .is_opened
-      .limit(10)
       .includes(:icon)
+
+    @accounts = set_pagination_for(accounts)
   end
 
   def show

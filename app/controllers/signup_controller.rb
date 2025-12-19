@@ -22,8 +22,9 @@ class SignupController < ApplicationController
         fetched_at: session[:oauth_signup]["fetched_at"]
       )
       session.delete(:oauth_signup)
-      redirect_back_or root_path, notice: "登録完了"
+      redirect_back_or root_path, notice: "サインアップしました"
     else
+      flash.now[:alert] = "サインアップできませんでした"
       render :new
     end
   end

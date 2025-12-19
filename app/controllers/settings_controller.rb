@@ -1,6 +1,6 @@
 class SettingsController < ApplicationController
   before_action :require_signin
-  before_action :set_account, only: %i[ account post_account ]
+  before_action :set_account, only: %i[ account update_account ]
 
   def index
   end
@@ -8,10 +8,11 @@ class SettingsController < ApplicationController
   def account
   end
 
-  def post_account
+  def update_account
     if @account.update(account_params)
-      redirect_to settings_account_path, notice: "更新しました"
+      redirect_to settings_account_path, notice: "アカウント情報を更新しました"
     else
+      flash.now[:alert] = "アカウント情報を更新できませんでした"
       render :account
     end
   end

@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
   before_action :set_correct_image, only: %i[edit update destroy variants_create variants_destroy]
 
   def index
-    images = Image.is_normal.isnt_closed
+    images = Image.is_normal.is_opened.includes(:account)
     @images = set_pagination_for(images)
   end
 
@@ -20,27 +20,27 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
     @image.account = @current_account
     if @image.save
-      redirect_to images_path, notice: "作成しました"
+      redirect_to images_path, notice: "画像を作成しました"
     else
-      flash.now[:alert] = "作成できませんでした"
+      flash.now[:alert] = "画像を作成できませんでした"
       render :new
     end
   end
 
   def update
     if @image.update(image_params)
-      redirect_to image_path(@image.aid), notice: "更新しました"
+      redirect_to image_path(@image.aid), notice: "画像を更新しました"
     else
-      flash.now[:alert] = "更新できませんでした"
+      flash.now[:alert] = "画像を更新できませんでした"
       render :edit
     end
   end
 
   def destroy
     if @image.update(status: :deleted)
-      redirect_to images_path, notice: "削除しました"
+      redirect_to images_path, notice: "画像を削除しました"
     else
-      flash.now[:alert] = "削除できませんでした"
+      flash.now[:alert] = "画像を削除できませんでした"
       render :edit
     end
   end

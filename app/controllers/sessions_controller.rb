@@ -27,6 +27,7 @@ class SessionsController < ApplicationController
     if @session.update!(session_params)
       redirect_to session_path(@session.token_lookup), notice: "セッションを更新しました"
     else
+      flash.now[:alert] = "セッションを更新できませんでした"
       render :edit
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 5) do
+ActiveRecord::Schema[8.1].define(version: 6) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_uca1400_ai_ci", force: :cascade do |t|
     t.string "aid", limit: 14, null: false
     t.bigint "banner_id"
@@ -32,6 +32,24 @@ ActiveRecord::Schema[8.1].define(version: 5) do
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["icon_id"], name: "index_accounts_on_icon_id"
     t.index ["name_id"], name: "index_accounts_on_name_id", unique: true
+    t.check_constraint "json_valid(`meta`)", name: "meta"
+  end
+
+  create_table "documents", charset: "utf8mb4", collation: "utf8mb4_uca1400_ai_ci", force: :cascade do |t|
+    t.string "aid", limit: 14, null: false
+    t.text "content", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "edited_at"
+    t.text "meta", size: :long, default: "{}", null: false, collation: "utf8mb4_bin"
+    t.string "name_id", null: false
+    t.datetime "published_at"
+    t.integer "status", limit: 1, default: 0, null: false
+    t.string "summary", default: "", null: false
+    t.string "title", default: "", null: false
+    t.datetime "updated_at", null: false
+    t.integer "visibility", limit: 1, default: 0, null: false
+    t.index ["aid"], name: "index_documents_on_aid", unique: true
+    t.index ["name_id"], name: "index_documents_on_name_id", unique: true
     t.check_constraint "json_valid(`meta`)", name: "meta"
   end
 

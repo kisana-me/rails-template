@@ -8,10 +8,14 @@ Rails.application.routes.draw do
   get "sitemap" => "pages#sitemap"
 
   # Accounts
-  resources :accounts, param: :aid
+  get "/@:name_id" => "accounts#show", as: :account
 
   # Images
   resources :images, param: :aid
+
+  # Documents
+  resources :documents, except: [ :show ], param: :aid
+  resources :documents, only: [ :show ], param: :name_id
 
   # Sessions
   get "sessions/start"
@@ -29,8 +33,9 @@ Rails.application.routes.draw do
 
   # Settings
   get "settings" => "settings#index"
-  post "settings" => "settings#update"
   get "settings/account" => "settings#account"
+  patch "settings/account" => "settings#update_account"
+  delete "settings/leave" => "settings#leave"
 
   # Others
   get "up" => "rails/health#show", as: :rails_health_check
