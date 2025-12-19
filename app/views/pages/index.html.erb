@@ -1,4 +1,10 @@
 <% provide(:title, "") %>
 
-<h1>Hello, App!</h1>
-<p>kisanaによるWebアプリの雛形です。</p>
+<% if @document %>
+  <h1><%= @document.title %></h1>
+  <%= md_render @document.content %>
+<% else %>
+  <h1>Hello, App!</h1>
+
+  <p>kisanaによるWebアプリの雛形です。</p>
+<% end %>

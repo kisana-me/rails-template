@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   # Accounts
   get "/@:name_id" => "accounts#show", as: :account
+  resources :accounts, only: [ :index ], param: :aid
 
   # Images
   resources :images, param: :aid

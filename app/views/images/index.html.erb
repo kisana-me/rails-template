@@ -1,8 +1,5 @@
-<% provide(:title, '画像一覧') %>
-<% provide(:robots, 'false') %>
-<% provide(:layout_style, '') %>
-<% provide(:ga4, 'false') %>
+<% provide(:title, "画像一覧") %>
 
 <h1>画像一覧</h1>
-<%= render partial: 'images/image', collection: @images, as: 'image' %>
-<%= render 'shared/paging', pages: @total_pages, page: @page, page_to: '/images' %>
+<%= render partial: "images/image", collection: @images, as: "image" %>
+<%= render "shared/paging", pages: @total_pages, page: @page, page_to: "/images" %>
