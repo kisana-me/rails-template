@@ -6,27 +6,32 @@
   <%= render "shared/error_messages", instead: @account %>
 
   <div>
-    <%= form.label :name, "名前" %>
+    <%= form.label :icon_file %>
+    <%= form.file_field :icon_file %>
+  </div>
+
+  <div>
+    <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :name_id, "ID" %>
+    <%= form.label :name_id %>
     <%= form.text_field :name_id %>
   </div>
 
   <div>
-    <%= form.label :description, "説明" %>
+    <%= form.label :description %>
     <%= form.text_area :description %>
   </div>
 
   <div>
-    <%= form.label :birthdate, "生年月日" %>
+    <%= form.label :birthdate %>
     <%= form.datetime_field :birthdate %>
   </div>
 
   <div>
-    <%= form.label :visibility, "公開" %>
+    <%= form.label :visibility %>
     <%= form.select :visibility, Account.visibilities.keys.map { |k| [t("activerecord.enums.account.visibility.#{k}"), k] }, {} %>
   </div>
 
