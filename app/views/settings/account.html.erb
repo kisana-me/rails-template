@@ -45,10 +45,10 @@
 現在のサブスクリプション: <%= I18n.t("general.subscription.status.#{@current_account.subscription_plan}") %>
 <br />
 <br />
-<%= button_to "ANYURと連携", oauth_start_path, method: :post, params: { provider: "anyur" }, data: { turbo: false }, class: "pages-link-button" %>
+<%= button_to "ANYURと連携", oauth_start_path, method: :post, params: { provider: "anyur" }, data: { turbo: false } %>
 <br />
-<%= button_to "ANYURの情報を更新", oauth_fetch_path, method: :post, params: { provider: "anyur" }, data: { turbo: false }, class: "pages-link-button" %>
+<%= button_to "ANYURの情報を更新", oauth_fetch_path, method: :post, params: { provider: "anyur" }, data: { turbo: false } %>
 <br />
 <br />
 <br />
-<%= button_to "アカウントを削除", settings_leave_path, method: :delete, class: "custom-delete-button" %>
+<%= link_to "アカウントを削除", settings_leave_path %>

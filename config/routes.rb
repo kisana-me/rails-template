@@ -35,8 +35,9 @@ Rails.application.routes.draw do
   # Settings
   get "settings" => "settings#index"
   get "settings/account" => "settings#account"
-  patch "settings/account" => "settings#update_account"
-  delete "settings/leave" => "settings#leave"
+  patch "settings/account" => "settings#patch_account"
+  get "settings/leave" => "settings#leave"
+  delete "settings/leave" => "settings#delete_leave"
 
   # Others
   get "up" => "rails/health#show", as: :rails_health_check

@@ -1,6 +1,6 @@
 class SettingsController < ApplicationController
   before_action :require_signin
-  before_action :set_account, only: %i[ account update_account ]
+  before_action :set_account, only: %i[ account patch_account ]
 
   def index
   end
@@ -8,7 +8,7 @@ class SettingsController < ApplicationController
   def account
   end
 
-  def update_account
+  def patch_account
     if @account.update(account_params)
       redirect_to settings_account_path, notice: "アカウント情報を更新しました"
     else
@@ -17,7 +17,9 @@ class SettingsController < ApplicationController
     end
   end
 
-  def leave
+  def leave; end
+
+  def delete_leave
     @current_account.update(status: :deleted)
     sign_out
     redirect_to root_url, notice: "ご利用いただきありがとうございました"
