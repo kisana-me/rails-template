@@ -14,6 +14,12 @@
   transition: opacity 0.3s;
   animation: flash-hide 3s forwards;
 }
+.flash-message {
+  width: 100%;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
 .flash-button {
   border: none;
   top: 50%;
