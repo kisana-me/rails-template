@@ -47,7 +47,7 @@ class Account < ApplicationRecord
   end
 
   def icon_url
-    icon&.image_url(variant_type: "icon") || "/img-1.png"
+    icon&.image_url || full_url("/static_assets/images/account-icon.webp")
   end
 
   def subscription_plan

@@ -12,7 +12,13 @@ Rails.application.routes.draw do
   resources :accounts, only: [ :index ], param: :aid
 
   # Images
-  resources :images, param: :aid
+  resources :images, param: :aid do
+    member do
+      post "create_variant" => "images#create_variant", as: :create_variant
+      delete "delete_variant" => "images#delete_variant", as: :delete_variant
+      delete "delete_original" => "images#delete_original", as: :delete_original
+    end
+  end
 
   # Documents
   resources :documents, except: [ :show ], param: :aid
