@@ -50,6 +50,7 @@ class Account < ApplicationRecord
     icon&.image_url || full_url("/static_assets/images/account-icon.webp")
   end
 
+  # expired, unknown, basic, plus, premium, luxury
   def subscription_plan
     status = meta.dig("subscription", "subscription_status")
     return :basic unless %w[active trialing].include?(status)
